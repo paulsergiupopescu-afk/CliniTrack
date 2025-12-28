@@ -76,7 +76,6 @@ class AnalyticsService:
             return None
 
         # track monthly appointments
-        # TODO: maybe use pandas for this? seems like it would be faster
         monthly_data = {}
         status_count = {}
         category_count = {}

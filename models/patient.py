@@ -17,7 +17,6 @@ class Patient:
 
     def get_age(self):
         # calculates patient age from birthdate
-        # TODO: double check if this handles birthdays correctly
         from datetime import datetime
         birthdate = datetime.strptime(self.patient_birthdate, '%Y-%m-%d')
         today = datetime.now()

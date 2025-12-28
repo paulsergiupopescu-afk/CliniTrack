@@ -32,13 +32,11 @@ class PatientRepository(RepositoryInterface):
         row = cursor.fetchone()
 
         if row:
-            # Handle both old schema (6 columns) and new schema (10 columns)
+            # support different database column counts for backwards compatibility
             if len(row) >= 10:
-                # New schema with all fields
                 return Patient(row[0], row[1], row[2], row[3], row[4], row[5],
                               row[6], row[7], row[8], row[9])
             else:
-                # Old schema - provide defaults for missing fields
                 return Patient(row[0], row[1], row[2], row[3], row[4], row[5],
                               None, None, None, None)
 
@@ -79,13 +77,10 @@ class PatientRepository(RepositoryInterface):
 
         patients = []
         for row in rows:
-            # Handle both old schema (6 columns) and new schema (10 columns)
             if len(row) >= 10:
-                # New schema with all fields
                 patients.append(Patient(row[0], row[1], row[2], row[3], row[4], row[5],
                                       row[6], row[7], row[8], row[9]))
             else:
-                # Old schema - provide defaults for missing fields
                 patients.append(Patient(row[0], row[1], row[2], row[3], row[4], row[5],
                                       None, None, None, None))
 
