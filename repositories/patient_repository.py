@@ -69,10 +69,30 @@ class PatientRepository(RepositoryInterface):
         return cursor.rowcount > 0
 
     def get_all(self):
-        """Returneaza toti pacientii"""
+        # returns all patients from database
         cursor, conn = get_cursor_and_connection()
 
         cursor.execute('SELECT * FROM patients ORDER BY patient_id')
+        rows = cursor.fetchall()
+
+        patients = []
+        for row in rows:
+            if len(row) >= 10:
+                patients.append(Patient(row[0], row[1], row[2], row[3], row[4], row[5],
+                                      row[6], row[7], row[8], row[9]))
+            else:
+                patients.append(Patient(row[0], row[1], row[2], row[3], row[4], row[5],
+                                      None, None, None, None))
+
+        return patients
+
+    def search_by_name(self, name):
+        # search patients by name - just a simple text match
+        cursor, conn = get_cursor_and_connection()
+
+        # using LIKE to find partial matches
+        search_term = f"%{name}%"
+        cursor.execute('SELECT * FROM patients WHERE patient_name LIKE ? ORDER BY patient_name', (search_term,))
         rows = cursor.fetchall()
 
         patients = []

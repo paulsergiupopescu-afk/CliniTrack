@@ -5,6 +5,7 @@ A dental clinic management and analytics system built with Python. CliniTrack he
 ## What it does
 
 - Manage patient records (add, update, delete, search)
+- Search patients by name
 - View individual patient analytics (appointment history, spending)
 - Track doctors and their specialties
 - Handle appointments and scheduling
@@ -14,7 +15,7 @@ A dental clinic management and analytics system built with Python. CliniTrack he
 ## Features I'm proud of
 
 ### Patient Management
-Complete CRUD operations - you can add patients, search for them by ID, update their info, and delete records. Also includes individual patient analytics showing appointment history, total spending, and visit statistics.
+Complete CRUD operations - you can add patients, search for them by ID or name, update their info, and delete records. Also includes individual patient analytics showing appointment history, total spending, and visit statistics.
 
 ### Analytics
 This is the part I spent most time on. The system can show:
@@ -24,7 +25,35 @@ This is the part I spent most time on. The system can show:
 - Revenue analysis
 - Doctor performance metrics
 
+### GUI Application
+Built a simple but functional GUI using tkinter that lets you:
+- Search patients by name
+- View all patients in a nice table
+- See comprehensive statistics about the clinic
+- Easy to use interface with tabs
+
+## Installation
+
+1. Clone the repository
+```bash
+git clone https://github.com/yourusername/CliniTrack.git
+cd CliniTrack
+```
+
+2. Install dependencies (optional - only needed for data generation)
+```bash
+pip install -r requirements.txt
+```
+
+3. Run the application
+
 ## How to run
+
+### GUI Application (Recommended)
+```bash
+python gui_app.py
+```
+This launches the graphical interface where you can search patients and view statistics.
 
 ### Quick analytics demo
 ```bash
@@ -38,11 +67,11 @@ python analytics_demo.py
 ```
 Lets you choose what analytics to see.
 
-### Patient management
+### Patient management (CLI)
 ```bash
 python main.py
 ```
-CRUD interface for managing patients.
+CRUD interface for managing patients in the terminal.
 
 ## Project structure
 

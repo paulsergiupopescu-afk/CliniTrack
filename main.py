@@ -5,21 +5,21 @@ from repositories.payment_repository import PaymentRepository
 
 
 def print_header(title):
-    """Afiseaza un header"""
+    # prints a nice header for menu sections
     print("\n" + "=" * 60)
     print(f"  {title}")
     print("=" * 60)
 
 
 def clear_screen():
-    """Curata ecranul"""
+    # clears the screen by printing newlines
     print("\n" * 2)
 
 
 # ===== PATIENT FUNCTIONS =====
 
 def add_patient():
-    """Adauga un pacient nou"""
+    # adds a new patient to the database
     print_header("ADD NEW PATIENT")
 
     name = input("Name: ")
@@ -44,7 +44,7 @@ def add_patient():
 
 
 def search_patient():
-    """Cauta un pacient dupa ID"""
+    # search for a patient by their ID
     print_header("SEARCH PATIENT")
 
     patient_id = int(input("Enter patient ID: "))
@@ -67,7 +67,7 @@ def search_patient():
 
 
 def update_patient():
-    """Modifica datele unui pacient"""
+    # updates patient information
     print_header("UPDATE PATIENT")
 
     patient_id = int(input("Enter patient ID: "))
@@ -109,7 +109,7 @@ def update_patient():
 
 
 def delete_patient():
-    """Sterge un pacient"""
+    # deletes a patient from the database
     print_header("DELETE PATIENT")
 
     patient_id = int(input("Enter patient ID to delete: "))
@@ -135,7 +135,7 @@ def delete_patient():
 
 
 def view_all_patients():
-    """Afiseaza toti pacientii"""
+    # shows all patients in the database
     print_header("ALL PATIENTS")
 
     repo = PatientRepository()
@@ -227,7 +227,7 @@ def patient_analytics():
 # ===== MENUS =====
 
 def patient_menu():
-    """Meniul pentru pacienti"""
+    # menu for patient management options
     while True:
         clear_screen()
         print_header("PATIENT MANAGEMENT")
@@ -261,7 +261,7 @@ def patient_menu():
 
 
 def main_menu():
-    """Meniul principal"""
+    # main menu of the application
     while True:
         clear_screen()
         print_header("CLINITRACK - PATIENT MANAGEMENT")

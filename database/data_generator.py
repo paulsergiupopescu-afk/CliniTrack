@@ -85,17 +85,17 @@ class BucharestDentalClinicGenerator:
         self.PHONE_PREFIXES = ['021', '031', '0722', '0723', '0724', '0725', '0726', '0727', '0728', '0729']
 
     def generate_realistic_phone(self):
-        """Generate realistic Romanian phone number"""
+        # generates a fake but realistic looking Romanian phone number
         prefix = random.choice(self.PHONE_PREFIXES)
         if prefix.startswith('02') or prefix.startswith('03'):
-            # Landline
+            # landline format
             return f"{prefix}.{random.randint(100, 999)}.{random.randint(100, 999)}"
         else:
-            # Mobile
+            # mobile format
             return f"{prefix}.{random.randint(100, 999)}.{random.randint(100, 999)}"
 
     def generate_realistic_address(self):
-        """Generate realistic Bucharest address"""
+        # generates a fake but realistic Bucharest address
         street_types = ['Str.', 'Bd.', 'Calea', 'Aleea', 'Piata']
         street_names = [
             'Mihai Eminescu', 'Ion Creanga', 'Nicolae Iorga', 'Octavian Goga',
@@ -111,14 +111,14 @@ class BucharestDentalClinicGenerator:
         return f"{street_type} {street_name} {number}, {sector}, Bucharest"
 
     def clear_existing_data(self):
-        """Clear existing data from tables"""
+        # deletes all existing data from tables before regenerating
         tables = ['payments', 'appointments', 'procedures', 'doctors', 'patients']
         for table in tables:
             self.cursor.execute(f'DELETE FROM {table}')
         print("Existing data cleared.")
 
     def generate_patients(self, count=120):
-        """Generate realistic patients"""
+        # creates fake patient records with realistic Romanian names and data
         print(f"Generating {count} realistic patients...")
 
         for _ in range(count):
@@ -180,7 +180,7 @@ class BucharestDentalClinicGenerator:
                   gender, address, phone, email, insurance, 'Bucharest'))
 
     def generate_doctors(self):
-        """Generate realistic doctors"""
+        # creates doctor records from the predefined list
         print("Generating realistic doctors...")
 
         for i, (name, specialty, education, experience) in enumerate(self.DOCTORS, 1):
@@ -207,7 +207,7 @@ class BucharestDentalClinicGenerator:
                   work_days, phone, email))
 
     def generate_procedures(self):
-        """Generate procedures with realistic pricing"""
+        # creates procedure records with pricing info
         print("Generating procedures...")
 
         for i, (name, category, duration, price_min, price_max) in enumerate(self.PROCEDURES, 1):
@@ -217,7 +217,7 @@ class BucharestDentalClinicGenerator:
             ''', (i, name, category, duration, price_min, price_max))
 
     def generate_appointments(self, count=400):
-        """Generate realistic appointments with business logic"""
+        # creates appointment records linking patients to doctors with procedures
         print(f"Generating {count} realistic appointments...")
 
         # Get patient and doctor counts
@@ -337,7 +337,7 @@ class BucharestDentalClinicGenerator:
                   created_at, notes))
 
     def generate_payments(self):
-        """Generate realistic payments for completed appointments"""
+        # generates payment records for completed appointments
         print("Generating realistic payments...")
 
         # Get completed appointments
@@ -386,39 +386,39 @@ class BucharestDentalClinicGenerator:
             ''', (appointment_id, amount, method, paid_at, status))
 
     def generate_all_data(self):
-        """Generate all realistic data"""
-        print("🏥 Generating realistic data for Bucharest Dental Clinic...")
+        # generates all fake data for the clinic database
+        print("Generating realistic data for Bucharest Dental Clinic...")
         print("=" * 60)
 
-        # Clear existing data
+        # clear any existing data first
         self.clear_existing_data()
 
-        # Generate data in logical order
+        # generate data in the right order to avoid foreign key issues
         self.generate_patients(120)
         self.generate_doctors()
         self.generate_procedures()
         self.generate_appointments(400)
         self.generate_payments()
 
-        # Commit all changes
+        # save everything to database
         self.conn.commit()
 
         print("=" * 60)
-        print("✅ Data generation completed successfully!")
-        print("\n📊 Generated data summary:")
+        print("Data generation completed successfully!")
+        print("\nGenerated data summary:")
 
-        # Show summary
+        # show how many records were created for each table
         tables = ['patients', 'doctors', 'procedures', 'appointments', 'payments']
         for table in tables:
             self.cursor.execute(f"SELECT COUNT(*) FROM {table}")
             count = self.cursor.fetchone()[0]
             print(f"   {table.capitalize()}: {count} records")
 
-        print(f"\n💾 Database saved to: {PATH_DB}")
-        print("🚀 Ready to run the application!")
+        print(f"\nDatabase saved to: {PATH_DB}")
+        print("Ready to run the application")
 
     def close(self):
-        """Close database connection"""
+        # closes the database connection
         self.conn.close()
 
 

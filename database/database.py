@@ -1,12 +1,13 @@
 import sqlite3
 
+# database file path
 PATH_DB = "database/dentalclinic.db"
 conn = sqlite3.connect(PATH_DB)
 cursor = conn.cursor()
 
-print("🏥 Creating enhanced database schema for Bucharest Dental Clinic...")
+print("Creating database schema for dental clinic...")
 
-# ENHANCED PATIENTS TABLE
+# create patients table with basic info and contact details
 cursor.execute('''
 CREATE TABLE IF NOT EXISTS patients(
     patient_id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -22,7 +23,7 @@ CREATE TABLE IF NOT EXISTS patients(
 )
 ''')
 
-# ENHANCED DOCTORS TABLE
+# create doctors table with specialization and contact info
 cursor.execute('''
 CREATE TABLE IF NOT EXISTS doctors(
     doctor_id INTEGER PRIMARY KEY,
@@ -38,7 +39,7 @@ CREATE TABLE IF NOT EXISTS doctors(
 )
 ''')
 
-# PROCEDURES TABLE
+# create procedures table to store available dental procedures
 cursor.execute("""
 CREATE TABLE IF NOT EXISTS procedures (
     id INTEGER PRIMARY KEY,
@@ -50,7 +51,7 @@ CREATE TABLE IF NOT EXISTS procedures (
 )
 """)
 
-# ENHANCED APPOINTMENTS TABLE
+# create appointments table linking patients to doctors with procedure details
 cursor.execute("""
 CREATE TABLE IF NOT EXISTS appointments (
     id INTEGER PRIMARY KEY,
@@ -70,7 +71,7 @@ CREATE TABLE IF NOT EXISTS appointments (
 )
 """)
 
-# ENHANCED PAYMENTS TABLE
+# create payments table to track financial transactions
 cursor.execute("""
 CREATE TABLE IF NOT EXISTS payments (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -83,15 +84,15 @@ CREATE TABLE IF NOT EXISTS payments (
 )
 """)
 
-print("✅ Database schema created successfully!")
-print("📋 Tables created:")
-print("   - patients (enhanced with address, phone, email, insurance)")
-print("   - doctors (enhanced with education, experience, contact)")
-print("   - procedures (pricing and duration)")
-print("   - appointments (enhanced with notes, source)")
-print("   - payments (enhanced with status)")
+print("Database schema created successfully!")
+print("Tables created:")
+print("   - patients (with address, phone, email, insurance)")
+print("   - doctors (with education, experience, contact)")
+print("   - procedures (with pricing and duration)")
+print("   - appointments (with notes and source)")
+print("   - payments (with status tracking)")
 
 conn.commit()
 conn.close()
 
-print("🚀 Ready to generate realistic data!")
+print("Ready to generate data")
