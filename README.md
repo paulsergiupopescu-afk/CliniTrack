@@ -26,11 +26,12 @@ This is the part I spent most time on. The system can show:
 - Doctor performance metrics
 
 ### GUI Application
-Built a simple but functional GUI using tkinter that lets you:
-- Search patients by name
-- View all patients in a nice table
-- See comprehensive statistics about the clinic
-- Easy to use interface with tabs
+Built a complete management system using tkinter with 5 main tabs:
+- **Patients**: Add, update, delete, search patients by name, view detailed patient analytics
+- **Doctors**: View all doctors with their specialties and experience
+- **Appointments**: View all appointments or filter by patient, track appointment history
+- **Payments**: View payment records with totals and revenue tracking
+- **Analytics Dashboard**: Comprehensive statistics including demographics, revenue, and doctor performance
 
 ## Installation
 
